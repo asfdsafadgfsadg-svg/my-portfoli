@@ -612,3 +612,9 @@ html[dir="ltr"] .form-group {
         padding: 25px;
     }
 }
+
+/* تعديل وتوسيط عنوان "تصاميم سوشيال ميديا" في صفحة الأعمال */
+.portfolio-header h2 {
+    text-align: center;
+    width: 100%;
+}
