@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Design Agency — Creative Studio</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;800;900&family=Poppins:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <!-- Ambient Glow Background -->
+    <div class="ambient-glow"></div>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="logo">
+            <span class="logo-text">DESIGN AGENCY<span>.</span></span>
+        </div>
+        
+        <!-- زر القائمة للهواتف -->
+        <button class="menu-toggle" id="menuToggle">
+            <i class="fa-solid fa-bars"></i>
+        </button>
+
+        <ul class="nav-links" id="navLinks">
+            <li><a href="#" id="nav-home" class="active" data-ar="الرئيسية" data-en="Home">الرئيسية</a></li>
+            <li><a href="#" id="nav-work" data-ar="أعمالنا" data-en="Our Work">أعمالنا</a></li>
+            <li><a href="#" id="nav-teachers" data-ar="المدرسين المنضمين" data-en="Our Teachers">المدرسين المنضمين</a></li>
+            <li><a href="#" id="nav-join" data-ar="اشترك معنا" data-en="Join Us">اشترك معنا</a></li>
+            <li><a href="#" id="nav-about" data-ar="من نحن" data-en="About Us">من نحن</a></li>
+            <li><a href="#" id="nav-contact" data-ar="تواصل معنا" data-en="Contact Us">تواصل معنا</a></li>
+        </ul>
+
+        <div class="nav-right-actions">
+            <button class="lang-btn" id="langToggle">
+                <i class="fa-solid fa-globe"></i>
+                <span id="langText">English</span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Main Content Container -->
+    <main class="main-content">
+
+        <!-- 1. الصفحة الرئيسية (Hero) -->
+        <section class="page-section active" id="page-home">
+            <div class="glass-overlay">
+                <div class="glass-col"></div>
+                <div class="glass-col"></div>
+                <div class="glass-col"></div>
+                <div class="glass-col"></div>
+                <div class="glass-col"></div>
+                <div class="glass-col"></div>
+                <div class="glass-col"></div>
+                <div class="glass-col"></div>
+                <div class="glass-col"></div>
+                <div class="glass-col"></div>
+                <div class="glass-col"></div>
+            </div>
+
+            <div class="hero">
+                <div class="hero-content">
+                    <h1 class="glass-title" data-ar="تصاميم بصرية مبتكرة <br><span>تُحلق بعلامتك التجارية</span>" data-en="Innovative Visual Designs <br><span>Elevating Your Brand</span>">
+                        تصاميم بصرية مبتكرة <br>
+                        <span>تُحلق بعلامتك التجارية</span>
+                    </h1>
+
+                    <p class="glass-description" data-ar="في Design Agency، ندمج بين الهويات البصرية القوية والتصاميم ثلاثية الأبعاد والتسويق الحديث لمواكبة الجيل الجديد. نحن هنا لنحول أفكارك الكبيرة إلى تجارب بصرية استثنائية." data-en="At Design Agency, we merge strong visual identities, 3D designs, and modern marketing to lead the new era. We transform your big ideas into extraordinary visual experiences.">
+                        في Design Agency، ندمج بين الهويات البصرية القوية والتصاميم ثلاثية الأبعاد والتسويق الحديث لمواكبة الجيل الجديد. نحن هنا لنحول أفكارك الكبيرة إلى تجارب بصرية استثنائية.
+                    </p>
+
+                    <div class="glass-cta-group">
+                        <button id="exploreBtn" class="btn glass-btn-primary" data-ar="استكشف أعمالنا ↗" data-en="Explore Our Work ↗">استكشف أعمالنا ↗</button>
+                        <a href="#" id="heroContactBtn" class="glass-btn-secondary" data-ar="تواصل معنا ❯" data-en="Contact Us ❯">تواصل معنا ❯</a>
+                    </div>
+
+                    <div class="facebook-wrapper">
+                        <a href="https://www.facebook.com/profile.php?id=61580850777574" target="_blank" class="facebook-link-btn">
+                            <i class="fa-brands fa-facebook"></i>
+                            <span data-ar="فيسبوك - Facebook" data-en="Facebook - فيسبوك">فيسبوك - Facebook</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="social-footer">
+                <div class="social-icons">
+                    <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="https://www.facebook.com/profile.php?id=61580850777574" target="_blank"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
+                </div>
+                <span class="footer-tagline">Design Agency Creative Hub</span>
+            </div>
+
+            <div class="hero-stats">
+                <div class="stat-item">
+                    <strong class="cyan-text" data-ar="رؤيتنا الإبداعية" data-en="Our Vision">رؤيتنا الإبداعية</strong>
+                    <span data-ar="نصنع تصاميم مبتكرة تترك أثراً بصرياً فريداً وترتقي بعلامتك التجارية." data-en="We craft innovative designs that leave a unique visual impact and elevate your brand.">نصنع تصاميم مبتكرة تترك أثراً بصرياً فريداً وترتقي بعلامتك التجارية.</span>
+                </div>
+                <div class="stat-item">
+                    <strong class="yellow-text" data-ar="شغفنا بالتفاصيل" data-en="Our Passion">شغفنا بالتفاصيل</strong>
+                    <span data-ar="نحول الأفكار المعقدة إلى حلول إبداعية بسيطة وجذابة تحاكي التطور." data-en="We transform complex ideas into simple, attractive creative solutions fitting the future.">نحول الأفكار المعقدة إلى حلول إبداعية بسيطة وجذابة تحاكي التطور.</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. صفحة الأعمال -->
+        <section class="page-section" id="page-work">
+            <div class="portfolio-header">
+                <button class="back-btn backHomeBtn" data-ar="← العودة للرئيسية" data-en="← Back to Home">← العودة للرئيسية</button>
+                <h2 data-ar="معرض الأعمال والتصاميم" data-en="Portfolio & Designs">معرض الأعمال والتصاميم</h2>
+                <p data-ar="استعرض الـ 27 تصميم الخاصة بـ Design Agency" data-en="Browse all 27 designs by Design Agency">استعرض الـ 27 تصميم الخاصة بـ Design Agency</p>
+            </div>
+
+            <div class="portfolio-grid">
+                <div class="portfolio-card"><div class="card-image"><img src="images/1.png" alt="1" loading="eager"></div></div>
+                <div class="portfolio-card"><div class="card-image"><img src="images/2.png" alt="2" loading="eager"></div></div>
+                <div class="portfolio-card"><div class="card-image"><img src="images/3.png" alt="3" loading="eager"></div></div>
+                <div class="portfolio-card"><div class="card-image"><img src="images/4.png" alt="4" loading="eager"></div></div>
+                <div class="portfolio-card"><div class="card-image"><img src="images/5.png" alt="5" loading="eager"></div></div>
+                <div class="portfolio-card"><div class="card-image"><img src="images/6.png" alt="6" loading="eager"></div></div>
+                <div class="portfolio-card"><div class="card-image"><img src="images/7.png" alt="7" loading="eager"></div></div>
+                <div class="portfolio-card"><div class="card-image"><img src="images/8.png" alt="8" loading="eager"></div></div>
+                <div class="portfolio-card"><div class="card-image"><img src="images/9.png" alt="9" loading="eager"></div></div>
+                <div class="portfolio-card"><div class="card-image"><img src="images/10.png" alt="10" loading="eager"></div></div>
+                <div class="portfolio-card"><div class="card-image"><img src="images/11.png" alt="11" loading="eager"></div></div>
+                <div class="portfolio-card"><div class="card-image"><img src="images/12.png" alt="12" loading="eager"></div></div>
+              
+                <div class="portfolio-card"><div class="card-image"><img src="images/14.png" alt="14" loading="eager"></div></div>
+                <div class="portfolio-card"><div class="card-image"><img src="images/15.png" alt="15" loading="eager"></div></div>
+                <div class="portfolio-card"><div class="card-image"><img src="images/16.png" alt="16" loading="eager"></div></div>
+                <div class="portfolio-card"><div class="card-image"><img src="images/17.png" alt="17" loading="eager"></div></div>
+                <div class="portfolio-card"><div class="card-image"><img src="images/18.png" alt="18" loading="eager"></div></div>
+                <div class="portfolio-card"><div class="card-image"><img src="images/19.png" alt="19" loading="eager"></div></div>
+                <div class="portfolio-card"><div class="card-image"><img src="images/20.png" alt="20" loading="eager"></div></div>
+                <div class="portfolio-card"><div class="card-image"><img src="images/21.png" alt="21" loading="eager"></div></div>
+                <div class="portfolio-card"><div class="card-image"><img src="images/22.png" alt="22" loading="eager"></div></div>
+                <div class="portfolio-card"><div class="card-image"><img src="images/23.png" alt="23" loading="eager"></div></div>
+                <div class="portfolio-card"><div class="card-image"><img src="images/24.png" alt="24" loading="eager"></div></div>
+                <div class="portfolio-card"><div class="card-image"><img src="images/25.png" alt="25" loading="eager"></div></div>
+                <div class="portfolio-card"><div class="card-image"><img src="images/26.png" alt="26" loading="eager"></div></div>
+                <div class="portfolio-card"><div class="card-image"><img src="images/27.png" alt="27" loading="eager"></div></div>
+            </div>
+        </section>
+
+        <!-- 3. صفحة المدرسين المنضمين -->
+        <section class="page-section" id="page-teachers">
+            <div class="portfolio-header">
+                <button class="back-btn backHomeBtn" data-ar="← العودة للرئيسية" data-en="← Back to Home">← العودة للرئيسية</button>
+                <h2 data-ar="المدرسين المنضمين معنا" data-en="Our Joined Teachers">المدرسين المنضمين معنا</h2>
+                <p data-ar="نخبة من المدرسين المتميزين الذين تشرفنا بالعمل معهم" data-en="Elite teachers we had the honor to work with">نخبة من المدرسين المتميزين الذين تشرفنا بالعمل معهم</p>
+            </div>
+
+            <div class="portfolio-grid">
+                <!-- مدرس 1 -->
+                <div class="portfolio-card teacher-card-wrapper">
+                    <div class="card-image"><img src="images/9.png" alt="مستر مجدي احمد" loading="eager"></div>
+                    <div class="teacher-name">مستر مجدي احمد</div>
+                </div>
+                <!-- مدرس 2 -->
+                <div class="portfolio-card teacher-card-wrapper">
+                    <div class="card-image"><img src="images/15.png" alt="مستر محمود حمدي" loading="eager"></div>
+                    <div class="teacher-name">مستر محمود حمدي</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. صفحة اشترك معنا -->
+        <section class="page-section" id="page-join">
+            <div class="portfolio-header">
+                <button class="back-btn backHomeBtn" data-ar="← العودة للرئيسية" data-en="← Back to Home">← العودة للرئيسية</button>
+            </div>
+            <div class="join-wrapper">
+                <div class="join-card">
+                    <div class="card-badge-icon">
+                        <i class="fa-solid fa-id-card"></i>
+                    </div>
+                    <h2 data-ar="الانضمام إلى فريقنا" data-en="Join Our Team">الانضمام إلى فريقنا</h2>
+                    <div class="card-line"></div>
+                    <p class="join-status-text" data-ar="حالياً لا نحتاج أفراد معنا." data-en="We currently do not require new team members.">
+                        حالياً لا نحتاج أفراد معنا.
+                    </p>
+                    <p class="join-sub-text" data-ar="نشكر اهتمامك بالانضمام لـ Design Agency. تابعنا للاطلاع على أي فرص وظيفية جديدة فور فتح باب التقديم." data-en="Thank you for your interest in joining Design Agency. Stay tuned for future career opportunities.">
+                        نشكر اهتمامك بالانضمام لـ Design Agency. تابعنا للاطلاع على أي فرص وظيفية جديدة فور فتح باب التقديم.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. صفحة من نحن -->
+        <section class="page-section" id="page-about">
+            <div class="portfolio-header">
+                <button class="back-btn backHomeBtn" data-ar="← العودة للرئيسية" data-en="← Back to Home">← العودة للرئيسية</button>
+                <h2 data-ar="من نحن — فريق العمل" data-en="About Us — Our Team">من نحن — فريق العمل</h2>
+                <p data-ar="تعرّف على الشغف والرؤية خلف نجاح Design Agency" data-en="Meet the passion and vision behind Design Agency">تعرّف على الشغف والرؤية خلف نجاح Design Agency</p>
+            </div>
+
+            <div class="team-container">
+                <table class="team-table">
+                    <tbody>
+                        <tr class="team-row">
+                            <td class="team-photo-cell">
+                                <div class="team-photo-wrapper">
+                                    <img src="images/00.jpg" alt="Founder">
+                                </div>
+                            </td>
+                            <td class="team-info-cell">
+                                <h3 data-ar="مؤسس الشركة والرائد الإبداعي" data-en="Founder & Creative Director">مؤسس الشركة والرائد الإبداعي</h3>
+                                <p data-ar="نسعى دائماً لبناء هويات بصرية مبتكرة تفرّد بها عملؤنا في السوق وتترك انطباعاً ينبض بالحيوية والتميز.<br>خبرتنا الممتدة في عالم التصميم تضمن لك تحويل أفكارك إلى واجهات وتجارب استثنائية تجذب الجمهور من اللحظة الأولى." data-en="We strive to craft unique visual identities that set our clients apart and leave a lasting impression.<br>Our deep expertise ensures transforming your ideas into extraordinary visual experiences.">
+                                    نسعى دائماً لبناء هويات بصرية مبتكرة تفرّد بها عملؤنا في السوق وتترك انطباعاً ينبض بالحيوية والتميز.<br>خبرتنا الممتدة في عالم التصميم تضمن لك تحويل أفكارك إلى واجهات وتجارب استثنائية تجذب الجمهور من اللحظة الأولى.
+                                </p>
+                            </td>
+                        </tr>
+
+                        <tr class="team-row">
+                            <td class="team-photo-cell">
+                                <div class="team-photo-wrapper">
+                                    <img src="images/01.jpg" alt="Co-Founder">
+                                </div>
+                            </td>
+                            <td class="team-info-cell">
+                                <h3 data-ar="الشريك التنفيذي ومطور الأعمال" data-en="Co-Founder & Business Developer">الشريك التنفيذي ومطور الأعمال</h3>
+                                <p data-ar="نؤمن بأن الإبداع لا يكتمل إلا بالتخطيط الاستراتيجي الدقيق الموجه نحو تحقيق أفضل النتائج الحقيقية لعملائنا.<br>نعمل جنباً إلى جنب معكم لبناء شراكات طويلة الأمد وتطوير حلول تسويقية وتصميمية تحاكي المستقبل." data-en="We believe creativity is complete only with strategic planning targeted at driving real results.<br>We work alongside you to build long-term partnerships and deliver futuristic marketing solutions.">
+                                    نؤمن بأن الإبداع لا يكتمل إلا بالتخطيط الاستراتيجي الدقيق الموجه نحو تحقيق أفضل النتائج الحقيقية لعملائنا.<br>نعمل جنباً إلى جنب معكم لبناء شراكات طويلة الأمد وتطوير حلول تسويقية وتصميمية تحاكي المستقبل.
+                                </p>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- 6. صفحة تواصل معنا -->
+        <section class="page-section" id="page-contact">
+            <div class="portfolio-header">
+                <button class="back-btn backHomeBtn" data-ar="← العودة للرئيسية" data-en="← Back to Home">← العودة للرئيسية</button>
+                <h2 data-ar="تواصل معنا" data-en="Contact Us">تواصل معنا</h2>
+                <p data-ar="أرسل لنا تفاصيل مشروعك وسنتواصل معك في أسرع وقت" data-en="Send us your project details and we will reach out shortly">أرسل لنا تفاصيل مشروعك وسنتواصل معك في أسرع وقت</p>
+            </div>
+
+            <div class="contact-wrapper">
+                <form class="contact-form" id="contactForm">
+                    <div class="form-group">
+                        <label for="name" data-ar="الاسم الكامل" data-en="Full Name">الاسم الكامل</label>
+                        <input type="text" id="name" name="name" required placeholder="أدخل اسمك هنا">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phone" data-ar="رقم الهاتف / الواتساب" data-en="Phone / WhatsApp">رقم الهاتف / الواتساب</label>
+                        <input type="tel" id="phone" name="phone" required placeholder="010xxxxxxxx">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="service" data-ar="نوع الخدمة المطلوبة" data-en="Required Service">نوع الخدمة المطلوبة</label>
+                        <select id="service" name="service" required>
+                            <option value="هوية بصرية وصناعة شعارات" data-ar="هوية بصرية وصناعة شعارات" data-en="Visual Identity & Logo Design">هوية بصرية وصناعة شعارات</option>
+                            <option value="تصاميم ثلاثية الأبعاد (3D)" data-ar="تصاميم ثلاثية الأبعاد (3D)" data-en="3D Design">تصاميم ثلاثية الأبعاد (3D)</option>
+                            <option value="حملات تسويقية وتصاميم سوشيال ميديا" data-ar="حملات تسويقية وتصاميم سوشيال ميديا" data-en="Marketing & Social Media">حملات تسويقية وتصاميم سوشيال ميديا</option>
+                            <option value="خدمة أخرى / استشارة" data-ar="خدمة أخرى / استشارة" data-en="Other Service / Consultation">خدمة أخرى / استشارة</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="message" data-ar="تفاصيل الرسالة" data-en="Message Details">تفاصيل الرسالة</label>
+                        <textarea id="message" name="message" rows="4" required placeholder="اكتب تفاصيل مشروعك أو استفسارك هنا..."></textarea>
+                    </div>
+
+                    <button type="submit" class="submit-btn" data-ar="إرسال الطلب عبر الواتساب 🚀" data-en="Send Request via WhatsApp 🚀">إرسال الطلب عبر الواتساب 🚀</button>
+                </form>
+            </div>
+        </section>
+
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
+<!-- أضف علامة الاستفهام ورقم أو تاريخ جنب اسم الملف -->
+<link rel="stylesheet" href="style.css?v=2026">
+<script src="script.js?v=2027"></script>
