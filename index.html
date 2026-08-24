@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Design Agency — Creative Studio</title>
     <!-- تم إضافة كود منع الكاش -->
-    <link rel="stylesheet" href="style.css?v=2029">
+    <link rel="stylesheet" href="style.css?v=2030">
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;800;900&family=Poppins:wght@400;600;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
@@ -20,8 +20,8 @@
             <span class="logo-text">DESIGN AGENCY<span></span></span>
         </div>
         
-        <!-- زر القائمة للهواتف -->
-        <button class="menu-toggle" id="menuToggle">
+        <!-- زر القائمة للهواتف (ملغي وظيفياً حسب رغبتك في العرض الطولي) -->
+        <button class="menu-toggle" id="menuToggle" style="display: none;">
             <i class="fa-solid fa-bars"></i>
         </button>
 
@@ -46,9 +46,8 @@
     <main class="main-content">
 
         <!-- 1. الصفحة الرئيسية (Hero) -->
-        <section class="page-section active" id="page-home">
+        <section class="page-section" id="page-home">
             <div class="glass-overlay">
-                <div class="glass-col"></div>
                 <div class="glass-col"></div>
                 <div class="glass-col"></div>
                 <div class="glass-col"></div>
@@ -110,7 +109,6 @@
         <!-- 2. صفحة الأعمال -->
         <section class="page-section" id="page-work">
             <div class="portfolio-header">
-                <button class="back-btn backHomeBtn" data-ar="← العودة للرئيسية" data-en="← Back to Home">← العودة للرئيسية</button>
                 <h2 class="centered-section-title" data-ar="تصاميم سوشيال ميديا" data-en="Social Media Designs">تصاميم سوشيال ميديا</h2>
             </div>
 
@@ -147,7 +145,6 @@
         <!-- 3. صفحة المدرسين المنضمين -->
         <section class="page-section" id="page-teachers">
             <div class="portfolio-header">
-                <button class="back-btn backHomeBtn" data-ar="← العودة للرئيسية" data-en="← Back to Home">← العودة للرئيسية</button>
                 <h2 data-ar="المدرسين المنضمين معنا" data-en="Our Joined Teachers">المدرسين المنضمين معنا</h2>
                 <p data-ar="نخبة من المدرسين المتميزين الذين تشرفنا بالعمل معهم" data-en="Elite teachers we had the honor to work with">نخبة من المدرسين المتميزين الذين تشرفنا بالعمل معهم</p>
             </div>
@@ -166,9 +163,6 @@
 
         <!-- 4. صفحة اشترك معنا -->
         <section class="page-section" id="page-join">
-            <div class="portfolio-header">
-                <button class="back-btn backHomeBtn" data-ar="← العودة للرئيسية" data-en="← Back to Home">← العودة للرئيسية</button>
-            </div>
             <div class="join-wrapper">
                 <div class="join-card">
                     <div class="card-badge-icon">
@@ -189,8 +183,7 @@
         <!-- 5. صفحة من نحن -->
         <section class="page-section" id="page-about">
             <div class="portfolio-header">
-                <button class="back-btn backHomeBtn" data-ar="← العودة للرئيسية" data-en="← Back to Home">← العودة للرئيسية</button>
-                <h2 data-ar="   فريق العمل" data-en="About Us — Our Team">   فريق العمل</h2>
+                <h2 data-ar="فريق العمل" data-en="About Us — Our Team">فريق العمل</h2>
                 <p data-ar="تعرّف على الشغف والرؤية خلف نجاح Design Agency" data-en="Meet the passion and vision behind Design Agency">تعرّف على الشغف والرؤية خلف نجاح Design Agency</p>
             </div>
 
@@ -231,7 +224,6 @@
         <!-- 6. صفحة تواصل معنا -->
         <section class="page-section" id="page-contact">
             <div class="portfolio-header">
-                <button class="back-btn backHomeBtn" data-ar="← العودة للرئيسية" data-en="← Back to Home">← العودة للرئيسية</button>
                 <h2 data-ar="تواصل معنا" data-en="Contact Us">تواصل معنا</h2>
                 <p data-ar="أرسل لنا تفاصيل مشروعك وسنتواصل معك في أسرع وقت" data-en="Send us your project details and we will reach out shortly">أرسل لنا تفاصيل مشروعك وسنتواصل معك في أسرع وقت</p>
             </div>
@@ -263,7 +255,7 @@
                         <textarea id="message" name="message" rows="4" required placeholder="اكتب تفاصيل مشروعك أو استفسارك هنا..."></textarea>
                     </div>
 
-                    <button type="submit"س class="submit-btn" data-ar="إرسال الطلب عبر الواتساب 🚀" data-en="Send Request via WhatsApp 🚀">إرسال الطلب عبر الواتساب 🚀</button>
+                    <button type="submit" class="submit-btn" data-ar="إرسال الطلب عبر الواتساب 🚀" data-en="Send Request via WhatsApp 🚀">إرسال الطلب عبر الواتساب 🚀</button>
                 </form>
             </div>
         </section>
@@ -271,6 +263,6 @@
     </main>
 
     <!-- كود منع الكاش للسكريبت -->
-    <script src="script.js?v=2029"></script>
+    <script src="script.js?v=2030"></script>
 </body>
 </html>
