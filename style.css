@@ -46,18 +46,12 @@ body.lang-changing {
     color: #00d2ff;
 }
 
-/* زر القائمة للموبايل (مخفي على الكمبيوتر) */
+/* إلغاء زر القائمة للموبايل نهائياً بناءً على طلبك */
 .menu-toggle {
-    display: none;
-    background: none;
-    border: none;
-    color: #fff;
-    font-size: 22px;
-    cursor: pointer;
-    padding: 5px;
+    display: none !important;
 }
 
-/* الروابط للكمبيوتر */
+/* الروابط: عرضها بشكل طولي متتالي على الموبايل كأنها ريلز/أقسام تحت بعضها */
 .nav-links {
     display: flex;
     list-style: none;
@@ -96,35 +90,29 @@ body.lang-changing {
     border-color: #00d2ff;
 }
 
-/* Page Control System */
+/* Page Control System - تحويل لتدفق عمودي كامل */
 .main-content {
     position: relative;
     width: 100%;
     min-height: 100vh;
 }
 
+/* جعل كل الأقسام تظهر ورا بعضها بالطول (Reels/Flow Style) */
 .page-section {
-    display: none;
+    display: block !important;
     width: 100%;
     min-height: 100vh;
     padding: 120px 8% 60px;
-}
-
-.page-section.active {
-    display: block;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 /* Hero Section */
 #page-home {
-    display: none;
-    position: relative;
-    padding-top: 140px;
-}
-
-#page-home.active {
-    display: flex;
+    display: flex !important;
     flex-direction: column;
     justify-content: center;
+    position: relative;
+    padding-top: 140px;
 }
 
 .glass-overlay {
@@ -223,9 +211,8 @@ body.lang-changing {
 }
 
 .social-footer {
-    position: absolute;
-    bottom: 30px;
-    left: 8%;
+    position: relative;
+    margin-top: 30px;
     z-index: 2;
     display: flex;
     align-items: center;
@@ -249,9 +236,8 @@ body.lang-changing {
 }
 
 .hero-stats {
-    position: absolute;
-    bottom: 30px;
-    right: 8%;
+    position: relative;
+    margin-top: 30px;
     z-index: 2;
     display: flex;
     gap: 40px;
@@ -283,23 +269,20 @@ body.lang-changing {
 }
 
 .back-btn {
-    background: none;
-    border: none;
-    color: #00d2ff;
-    font-weight: 700;
-    cursor: pointer;
-    font-size: 15px;
-    margin-bottom: 15px;
+    display: none; /* مش محتاجين زر رجوع طالما الصفحات كلها تحت بعضها طولي */
 }
 
 .portfolio-header h2 {
     font-size: 32px;
     font-weight: 800;
+    text-align: center;
+    width: 100%;
 }
 
 .portfolio-header p {
     color: #a0aec0;
     margin-top: 5px;
+    text-align: center;
 }
 
 .portfolio-grid {
@@ -325,7 +308,6 @@ body.lang-changing {
     border-color: rgba(0, 210, 255, 0.4);
 }
 
-/* حل مشكلة الشاشة السوداء وتثبيت ظهور الصور فوراً */
 .card-image {
     width: 100%;
     aspect-ratio: 1 / 1;
@@ -343,7 +325,6 @@ body.lang-changing {
     display: block;
     opacity: 1;
     visibility: visible;
-    transition: none;
     backface-visibility: hidden;
     -webkit-backface-visibility: hidden;
 }
@@ -363,7 +344,7 @@ body.lang-changing {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding-top: 40px;
+    padding-top: 20px;
 }
 
 .join-card {
@@ -472,7 +453,7 @@ html[dir="ltr"] .team-info-cell {
 }
 
 .team-info-cell p {
-    font-size: 15px;
+    font-size: 15,px;
     line-height: 1.8;
     color: #cbd5e1;
 }
@@ -555,74 +536,47 @@ html[dir="ltr"] .form-group {
     background: #33d9ff;
 }
 
-/* Mobile Responsive & Hamburger Menu */
+/* Mobile Responsive Adjustments للتدفق الطولي */
 @media (max-width: 768px) {
-    .menu-toggle {
-        display: block;
-    }
-
     .nav-links {
-        position: absolute;
-        top: 100%;
-        right: 0;
-        width: 100%;
-        background: rgba(11, 15, 25, 0.95);
-        backdrop-filter: blur(15px);
-        flex-direction: column;
-        align-items: center;
-        padding: 0;
-        gap: 20px;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        max-height: 0;
-        overflow: hidden;
-        transition: max-height 0.3s ease-in-out, padding 0.3s ease-in-out;
+        gap: 10px;
+        overflow-x: auto;
+        padding-bottom: 5px;
     }
-
-    .nav-links.show-menu {
-        max-height: 400px;
-        padding: 25px 0;
-    }
-
+    
     .nav-links a {
-        font-size: 16px;
+        font-size: 11px;
+        white-space: nowrap;
     }
 
     .hero-stats {
-        position: relative;
-        right: auto;
-        bottom: auto;
-        margin-top: 30px;
         flex-direction: column;
         gap: 15px;
     }
-    .social-footer {
-        position: relative;
-        left: auto;
-        bottom: auto;
-        margin-top: 30px;
-    }
+    
     .team-table, .team-row, .team-photo-cell, .team-info-cell {
         display: block;
         width: 100%;
         text-align: center;
     }
+    
     .team-photo-wrapper {
         margin: 0 auto 15px;
     }
+    
     .team-info-cell {
         padding: 0 20px 25px !important;
     }
+    
     .contact-wrapper {
         padding: 25px;
     }
+    
+    .glass-title {
+        font-size: 32px;
+    }
 }
 
-/* تعديل وتوسيط عنوان "تصاميم سوشيال ميديا" في صفحة الأعمال */
-.portfolio-header h2 {
-    text-align: center;
-    width: 100%;
-}
-/* كود الانتقال السينمائي (Fade-in & Zoom-out) */
 @keyframes cinematicEntrance {
     0% {
         opacity: 0;
