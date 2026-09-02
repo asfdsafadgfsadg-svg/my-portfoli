@@ -269,7 +269,7 @@ body.lang-changing {
 }
 
 .back-btn {
-    display: none; /* مش محتاجين زر رجوع طالما الصفحات كلها تحت بعضها طولي */
+    display: none;
 }
 
 .portfolio-header h2 {
@@ -287,7 +287,7 @@ body.lang-changing {
 
 .portfolio-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     gap: 20px;
 }
 
@@ -308,9 +308,10 @@ body.lang-changing {
     border-color: rgba(0, 210, 255, 0.4);
 }
 
+/* تعديل المقاس للعرض الأفقي Landscape بنسبة 16:9 مع استخدام contain لضمان ظهور الصورة كاملة بدون قص */
 .card-image {
     width: 100%;
-    aspect-ratio: 1 / 1;
+    aspect-ratio: 16 / 9;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -453,7 +454,7 @@ html[dir="ltr"] .team-info-cell {
 }
 
 .team-info-cell p {
-    font-size: 15,px;
+    font-size: 15px;
     line-height: 1.8;
     color: #cbd5e1;
 }
@@ -536,7 +537,7 @@ html[dir="ltr"] .form-group {
     background: #33d9ff;
 }
 
-/* Mobile Responsive Adjustments للتدفق الطولي */
+/* Mobile Responsive Adjustments */
 @media (max-width: 768px) {
     .nav-links {
         gap: 10px;
