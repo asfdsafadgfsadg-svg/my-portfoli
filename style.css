@@ -229,9 +229,16 @@ html[dir="rtl"] .frame-ring { transform: translate(-22px, 22px); }
 .work-item:hover::after { border-color: var(--accent); box-shadow: inset 0 0 20px rgba(47,123,255,.3); }
 
 /* ============ Teachers ============ */
-.teacher-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 28px 20px; }
-.teacher img { width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: 6px; background: var(--bg-2); margin-bottom: 14px; }
-.teacher-name { font-family: var(--f-head); font-weight: 800; font-size: 16px; }
+.teacher-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 360px)); justify-content: center; gap: 40px 32px; }
+.teacher { text-align: center; }
+.teacher img {
+    width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: 16px; background: var(--bg-2); margin-bottom: 20px;
+    border: 1px solid rgba(255,255,255,.25); box-shadow: 0 20px 50px rgba(0,0,0,.4);
+    transition: transform .4s var(--ease), box-shadow .4s;
+}
+.teacher:hover img { transform: translateY(-6px); box-shadow: 0 28px 60px rgba(0,0,0,.5); }
+.teacher-name { display: block; font-family: var(--f-head); font-weight: 900; font-size: clamp(21px, 2vw, 27px); line-height: 1.5; color: #fff; }
+.teacher-role { display: block; margin-top: 6px; font-family: var(--f-head); font-weight: 700; font-size: clamp(16px, 1.5vw, 19px); line-height: 1.7; color: #d6e6ff; }
 
 /* ============ Join ============ */
 .join-square {
@@ -387,8 +394,9 @@ html[dir="rtl"] .frame-ring { transform: translate(-22px, 22px); }
     .section-head h2 { font-size: 34px; }
     .work-grid { columns: 2; column-gap: 10px; }
     .work-item { margin-bottom: 10px; }
-    .teacher-list { grid-template-columns: repeat(2, 1fr); gap: 22px 12px; }
-    .teacher-name { font-size: 14px; }
+    .teacher-list { grid-template-columns: minmax(0, 360px); gap: 36px; }
+    .teacher-name { font-size: 22px; }
+    .teacher-role { font-size: 16px; }
     .contact-table, .contact-table tbody, .contact-table tr, .contact-table th, .contact-table td { display: block; width: 100%; }
     .contact-table th { border-inline-end: 0; padding: 12px 18px 0; background: transparent; }
     .contact-table td { padding: 4px 18px 14px; }
@@ -416,4 +424,82 @@ html[dir="rtl"] .frame-ring { transform: translate(-22px, 22px); }
     html { scroll-behavior: auto; }
     *, *::before, *::after { animation: none !important; transition: none !important; }
     .reveal { opacity: 1; transform: none; }
+}
+
+/* ============ Fine-tuning: desktop / tablet / phone ============ */
+/* منع أي سكرول أفقي من الخلفيات العريضة */
+main { overflow-x: clip; }
+html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+
+/* شاشات كبيرة (كمبيوتر واسع) */
+@media (min-width: 1500px) {
+    :root { --max: 1400px; --nav-h: 72px; }
+    body { font-size: 18px; }
+    .logo-img { height: 46px; }
+    .nav-links a { font-size: 17px; }
+    .teacher-list { grid-template-columns: repeat(3, 400px); }
+    .teacher-name { font-size: 28px; }
+    .teacher-role { font-size: 20px; }
+}
+
+/* تابلت */
+@media (min-width: 761px) and (max-width: 1020px) {
+    .teacher-list { grid-template-columns: repeat(3, 1fr); gap: 28px 20px; }
+    .teacher-name { font-size: 19px; }
+    .teacher-role { font-size: 15px; }
+    .work-grid { columns: 2; column-gap: 16px; }
+    .work-item { margin-bottom: 16px; }
+}
+@media (max-width: 760px) {
+    .teacher-list { grid-template-columns: minmax(0, 360px); gap: 36px; }
+}
+
+/* موبايل */
+@media (max-width: 640px) {
+    :root { --nav-h: 58px; --pad: 18px; }
+    body { font-size: 16px; line-height: 1.8; }
+    .logo-img { height: 34px; }
+
+    .section { padding-top: 52px; padding-bottom: 56px; }
+    .section-head { margin-bottom: 26px; }
+    .section-head h2 { font-size: 32px; }
+
+    #work::after, #teachers::after, #join::after, #about::after, #contact::after { height: 2px; }
+
+    .hero-inner { padding-bottom: 40px; row-gap: 32px; }
+    .hero-title { font-size: 30px; }
+    .hero-desc { font-size: 15.5px; margin-bottom: 24px; }
+    .hero-badge { font-size: 12.5px; padding: 6px 12px; }
+    .hero-cta { flex-direction: column; }
+    .hero-cta .btn { width: 100%; padding: 14px 20px; }
+    .photo-frame { width: min(62%, 260px); }
+    .frame-ring { transform: translate(14px, 14px); }
+    html[dir="rtl"] .frame-ring { transform: translate(-14px, 14px); }
+
+    .teacher-list { grid-template-columns: minmax(0, 340px); gap: 32px; }
+    .teacher img { margin-bottom: 14px; border-radius: 14px; }
+    .teacher-name { font-size: 21px; }
+    .teacher-role { font-size: 15.5px; }
+
+    .join-square { width: 100%; aspect-ratio: auto; min-height: 300px; border-radius: 20px; }
+    .join-table th { font-size: 20px; padding: 18px 0; height: auto; }
+    .join-status { font-size: 21px; padding-top: 22px; padding-bottom: 22px; height: auto; }
+    .join-sub { font-size: 14.5px; padding-top: 18px; padding-bottom: 22px; }
+
+    .team-role { font-size: 15.5px; }
+    .contact-card { border-radius: 20px; }
+    .contact-table input, .contact-table select, .contact-table textarea { font-size: 16px; }
+
+    .join-square, .team-card, .contact-card { -webkit-backdrop-filter: blur(14px) saturate(140%); backdrop-filter: blur(14px) saturate(140%); }
+
+    .site-footer { flex-direction: column; align-items: center; text-align: center; gap: 6px; padding: 22px var(--pad); }
+    .toast { bottom: 16px; font-size: 13px; }
+}
+
+/* موبايل صغير جداً */
+@media (max-width: 380px) {
+    .hero-title { font-size: 27px; }
+    .section-head h2 { font-size: 28px; }
+    .team-table tr { grid-template-columns: 66px 1fr; }
+    .team-photo img { width: 60px; height: 60px; }
 }
