@@ -187,7 +187,9 @@ const SLIDE_MS = 8000;
             $("#phone").closest(".field").classList.add("invalid");
             return toast(t.phone);
         }
-        if (!/^\d{8,15}$/.test(WHATSAPP_NUMBER)) return toast(t.noNumber);
+        /* تنضيف الرقم: يشيل أي مسافات أو + أو شرط، ولو بيبدأ بصفر يحوله لصيغة مصر الدولية */
+        const WA = String(WHATSAPP_NUMBER).replace(/\D/g, "").replace(/^00/, "").replace(/^0/, "20");
+        if (!/^\d{8,15}$/.test(WA)) return toast(t.noNumber);
 
         const text =
             `${t.hello} ${name}\n` +
@@ -195,7 +197,14 @@ const SLIDE_MS = 8000;
             `${t.phoneLabel}: ${phone}\n\n` +
             `${t.details}:\n${message}`;
 
-        window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(text)}`, "_blank", "noopener");
+        const url = `https://wa.me/${WA}?text=${encodeURIComponent(text)}`;
+        const link = document.createElement("a");
+        link.href = url;
+        link.target = "_blank";
+        link.rel = "noopener";
+        document.body.appendChild(link);
+        link.click();
+        link.remove();
         form.reset();
     });
 
