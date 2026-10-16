@@ -701,3 +701,24 @@ html[dir="ltr"] .hero-bg::after {
 @media (max-width: 1020px) {
     .hero-bg::after, html[dir="ltr"] .hero-bg::after { background: rgba(2,17,16,.7); }
 }
+
+
+/* ============ Phone fixes: slimmer top bar + team table photos ============ */
+@media (max-width: 640px) {
+    /* slimmer top bar; the logo image has empty margins, so crop it to its visible part */
+    :root { --nav-h: 64px; }
+    .logo-img { width: 112px; height: 40px; object-fit: cover; object-position: center; }
+    .lang-btn { padding: 6px 14px; font-size: 12px; }
+    .menu-toggle { width: 36px; height: 36px; }
+
+    /* team table: the later desktop padding (28px 24px) was squeezing the photo into an oval */
+    .team-table tr { grid-template-columns: 84px 1fr; column-gap: 6px; padding: 16px 12px; }
+    .team-table td, .team-table td:first-child, .team-table td:last-child { padding: 0 6px; }
+    .team-photo { align-self: center; }
+    .team-photo img { width: 72px; height: 72px; max-width: none; aspect-ratio: 1 / 1; object-fit: cover; }
+}
+
+@media (max-width: 380px) {
+    .team-table tr { grid-template-columns: 74px 1fr; }
+    .team-photo img { width: 62px; height: 62px; }
+}
