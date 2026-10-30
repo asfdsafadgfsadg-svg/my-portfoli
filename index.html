@@ -10,7 +10,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=Montserrat:wght@600;700;800;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css?v=3104">
+    <link rel="stylesheet" href="style.css?v=3105">
 </head>
 <body>
 
@@ -27,6 +27,10 @@
         </nav>
 
         <div class="nav-actions">
+            <button class="login-btn" id="loginBtn" type="button" aria-haspopup="dialog">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+                <span id="loginLabel" data-ar="تسجيل الدخول" data-en="Log in">تسجيل الدخول</span>
+            </button>
             <button class="lang-btn" id="langToggle" type="button" aria-label="Change language">
                 <span id="langText">EN</span>
             </button>
@@ -96,11 +100,11 @@
             </header>
 
             <div class="work-grid" id="workGrid">
-                <button class="work-item reveal" type="button"><img src="images/3.jpg" alt="تصميم 38" loading="lazy" decoding="async"></button>
-                <button class="work-item reveal" type="button"><img src="images/4.jpg" alt="تصميم 39" loading="lazy" decoding="async"></button>
-                <button class="work-item reveal" type="button"><img src="images/5.jpg" alt="تصميم 4" loading="lazy" decoding="async"></button>
-                <button class="work-item reveal" type="button"><img src="images/12.png" alt="تصميم 11" loading="lazy" decoding="async"></button>
-                 <button class="work-item reveal" type="button"><img src="images/11.png" alt="تصميم 6" loading="lazy" decoding="async"></button>
+                <div class="work-item reveal"><img src="images/3.jpg" alt="تصميم 38" loading="lazy" decoding="async"></div>
+                <div class="work-item reveal"><img src="images/4.jpg" alt="تصميم 39" loading="lazy" decoding="async"></div>
+                <div class="work-item reveal"><img src="images/5.jpg" alt="تصميم 4" loading="lazy" decoding="async"></div>
+                <div class="work-item reveal"><img src="images/12.png" alt="تصميم 11" loading="lazy" decoding="async"></div>
+                 <div class="work-item reveal"><img src="images/11.png" alt="تصميم 6" loading="lazy" decoding="async"></div>
             
             </div>
         </section>
@@ -114,7 +118,7 @@
 
             <ul class="teacher-list">
                 <li class="teacher reveal">
-                    <img src="images/7.png" alt="" loading="lazy" decoding="async">
+                    <img src="images/7.jpg" alt="" loading="lazy" decoding="async">
                     <span class="teacher-name" data-ar="مستر مجدي احمد" data-en="Mr. Magdy Ahmed">مستر مجدي احمد</span>
                     <span class="teacher-role" data-ar="مدرس العلوم المتكاملة - الكيمياء" data-en="Integrated Science Teacher - Chemistry">مدرس العلوم المتكاملة - الكيمياء</span>
                 </li>
@@ -225,16 +229,64 @@
         <a href="#home" data-ar="لفوق ↑" data-en="Back to top ↑">لفوق ↑</a>
     </footer>
 
-    <div class="lightbox" id="lightbox" hidden role="dialog" aria-modal="true" aria-label="Preview">
-        <button class="lb-btn lb-close" type="button" aria-label="Close">✕</button>
-        <button class="lb-btn lb-prev" type="button" aria-label="Previous">‹</button>
-        <img id="lbImg" alt="">
-        <button class="lb-btn lb-next" type="button" aria-label="Next">›</button>
-        <span class="lb-count" id="lbCount"></span>
+    <div class="auth-modal" id="authModal" hidden role="dialog" aria-modal="true" aria-label="Account">
+        <div class="auth-card">
+            <button class="auth-close" id="authClose" type="button" aria-label="Close">✕</button>
+
+            <div class="auth-tabs" id="authTabs" role="tablist">
+                <button class="auth-tab active" type="button" role="tab" data-tab="signup" data-ar="إنشاء حساب" data-en="Sign up">إنشاء حساب</button>
+                <button class="auth-tab" type="button" role="tab" data-tab="login" data-ar="تسجيل الدخول" data-en="Log in">تسجيل الدخول</button>
+            </div>
+
+            <form class="auth-form" id="signupForm" novalidate>
+                <table class="contact-table">
+                    <tbody>
+                        <tr class="field">
+                            <th><label for="suName" data-ar="الاسم" data-en="Name">الاسم</label></th>
+                            <td><input type="text" id="suName" required maxlength="30" autocomplete="username"></td>
+                        </tr>
+                        <tr class="field">
+                            <th><label for="suPass" data-ar="الباسورد" data-en="Password">الباسورد</label></th>
+                            <td><input type="password" id="suPass" required minlength="6" autocomplete="new-password" dir="ltr"></td>
+                        </tr>
+                        <tr class="field">
+                            <th><label for="suPass2" data-ar="تأكيد الباسورد" data-en="Confirm password">تأكيد الباسورد</label></th>
+                            <td><input type="password" id="suPass2" required autocomplete="new-password" dir="ltr"></td>
+                        </tr>
+                        <tr class="submit-row">
+                            <td colspan="2"><button type="submit" class="btn btn-solid" data-ar="إنشاء الحساب" data-en="Create account">إنشاء الحساب</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </form>
+
+            <form class="auth-form" id="loginForm" novalidate hidden>
+                <table class="contact-table">
+                    <tbody>
+                        <tr class="field">
+                            <th><label for="liName" data-ar="الاسم" data-en="Name">الاسم</label></th>
+                            <td><input type="text" id="liName" required maxlength="30" autocomplete="username"></td>
+                        </tr>
+                        <tr class="field">
+                            <th><label for="liPass" data-ar="الباسورد" data-en="Password">الباسورد</label></th>
+                            <td><input type="password" id="liPass" required autocomplete="current-password" dir="ltr"></td>
+                        </tr>
+                        <tr class="submit-row">
+                            <td colspan="2"><button type="submit" class="btn btn-solid" data-ar="دخول" data-en="Log in">دخول</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </form>
+
+            <div class="auth-account" id="accountPanel" hidden>
+                <p class="auth-hello"><span data-ar="أهلاً بيك،" data-en="Welcome,">أهلاً بيك،</span> <strong id="accName"></strong></p>
+                <button type="button" class="btn btn-solid" id="logoutBtn" data-ar="تسجيل الخروج" data-en="Log out">تسجيل الخروج</button>
+            </div>
+        </div>
     </div>
 
     <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
-    <script src="script.js?v=3104"></script>
+    <script src="script.js?v=3105"></script>
 </body>
 </html>

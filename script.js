@@ -37,7 +37,16 @@ const SLIDE_MS = 5000;
             hello: "أهلاً، أنا",
             service: "الخدمة المطلوبة",
             phoneLabel: "رقمي",
-            details: "تفاصيل المشروع"
+            details: "تفاصيل المشروع",
+            badName: "الاسم لازم يكون من 2 لـ 30 حرف ومن غير الرموز < >",
+            pwShort: "الباسورد لازم يكون 6 حروف على الأقل",
+            pwMatch: "الباسوردين مش متطابقين",
+            taken: "الاسم ده مستخدم قبل كده",
+            badLogin: "الاسم أو الباسورد غلط",
+            created: "تم إنشاء الحساب، أهلاً بيك",
+            welcome: "أهلاً بيك",
+            bye: "تم تسجيل الخروج",
+            noStore: "المتصفح مش بيسمح بحفظ الحساب (جرّب من غير وضع التخفي)"
         },
         en: {
             fill: "Please fill in all fields",
@@ -46,7 +55,16 @@ const SLIDE_MS = 5000;
             hello: "Hi, I'm",
             service: "Service",
             phoneLabel: "My number",
-            details: "Project details"
+            details: "Project details",
+            badName: "Name must be 2–30 characters without < >",
+            pwShort: "Password must be at least 6 characters",
+            pwMatch: "Passwords do not match",
+            taken: "This name is already taken",
+            badLogin: "Wrong name or password",
+            created: "Account created, welcome!",
+            welcome: "Welcome back",
+            bye: "Logged out",
+            noStore: "Your browser blocks saving the account (try without private mode)"
         }
     };
 
@@ -121,49 +139,10 @@ const SLIDE_MS = 5000;
         $$(".reveal").forEach(el => el.classList.add("visible"));
     }
 
-    /* ---------- Lightbox ---------- */
-    const lb = $("#lightbox");
-    const lbImg = $("#lbImg");
-    const lbCount = $("#lbCount");
-    const items = $$("#workGrid .work-item img");
-    let idx = 0;
-
-    function show(i) {
-        idx = (i + items.length) % items.length;
-        lbImg.src = items[idx].currentSrc || items[idx].src;
-        lbImg.alt = items[idx].alt;
-        lbCount.textContent = `${idx + 1} / ${items.length}`;
-    }
-    function openLb(i) {
-        show(i);
-        lb.hidden = false;
-        lb.classList.add("open");
-        document.body.classList.add("no-scroll");
-    }
-    function closeLb() {
-        lb.classList.remove("open");
-        lb.hidden = true;
-        document.body.classList.remove("no-scroll");
-    }
-
-    items.forEach((img, i) => img.closest(".work-item").addEventListener("click", () => openLb(i)));
-    $(".lb-close").addEventListener("click", closeLb);
-    $(".lb-prev").addEventListener("click", () => show(idx - 1));
-    $(".lb-next").addEventListener("click", () => show(idx + 1));
-    lb.addEventListener("click", e => { if (e.target === lb) closeLb(); });
-
-    document.addEventListener("keydown", e => {
-        if (!lb.classList.contains("open")) return;
-        if (e.key === "Escape") closeLb();
-        if (e.key === "ArrowLeft") show(idx - 1);
-        if (e.key === "ArrowRight") show(idx + 1);
-    });
-
-    let tx = 0;
-    lb.addEventListener("touchstart", e => { tx = e.touches[0].clientX; }, { passive: true });
-    lb.addEventListener("touchend", e => {
-        const dx = e.changedTouches[0].clientX - tx;
-        if (Math.abs(dx) > 50) show(idx + (dx < 0 ? 1 : -1));
+    /* ---------- التصاميم: من غير تكبير ولا سحب ---------- */
+    $$("#workGrid img").forEach(img => {
+        img.draggable = false;
+        img.addEventListener("dragstart", e => e.preventDefault());
     });
 
     /* ---------- Contact → WhatsApp ---------- */
@@ -224,6 +203,150 @@ const SLIDE_MS = 5000;
 
         document.addEventListener("visibilitychange", () => document.hidden ? stop() : start());
         start();
+    })();
+
+    /* ---------- Login / Sign up ----------
+       ملحوظة: الموقع ستاتيك (GitHub Pages) فالحسابات بتتحفظ على نفس الجهاز والمتصفح بس،
+       والباسورد بيتخزن مشفّر (PBKDF2) مش نص عادي. */
+    (function () {
+        const modal = $("#authModal");
+        if (!modal) return;
+        const loginBtn = $("#loginBtn"), loginLabel = $("#loginLabel");
+        const tabs = $$(".auth-tab", modal), tabsBar = $("#authTabs");
+        const panels = { signup: $("#signupForm"), login: $("#loginForm"), account: $("#accountPanel") };
+        const USERS = "da_users", SESSION = "da_session";
+
+        const read = k => { try { return JSON.parse(localStorage.getItem(k)); } catch (e) { return null; } };
+        const write = (k, v) => { try { localStorage.setItem(k, JSON.stringify(v)); return true; } catch (e) { return false; } };
+        const drop = k => { try { localStorage.removeItem(k); } catch (e) {} };
+
+        const enc = new TextEncoder();
+        const b64 = buf => btoa(String.fromCharCode(...new Uint8Array(buf)));
+        const unb64 = s => Uint8Array.from(atob(s), c => c.charCodeAt(0));
+        const newSalt = () => b64(crypto.getRandomValues(new Uint8Array(16)));
+        async function hashPw(pw, salt) {
+            const key = await crypto.subtle.importKey("raw", enc.encode(pw), "PBKDF2", false, ["deriveBits"]);
+            const bits = await crypto.subtle.deriveBits(
+                { name: "PBKDF2", salt: unb64(salt), iterations: 100000, hash: "SHA-256" }, key, 256);
+            return b64(bits);
+        }
+
+        const current = () => read(SESSION);
+        const clearInvalid = f => $$(".field", f).forEach(r => r.classList.remove("invalid"));
+        const mark = el => el.closest(".field").classList.add("invalid");
+
+        function renderBtn() {
+            const u = current();
+            const ar = u ? u.name : "تسجيل الدخول", en = u ? u.name : "Log in";
+            loginLabel.setAttribute("data-ar", ar);
+            loginLabel.setAttribute("data-en", en);
+            loginLabel.textContent = lang === "ar" ? ar : en;
+            loginBtn.classList.toggle("logged", !!u);
+        }
+
+        function showPanel(name) {
+            Object.keys(panels).forEach(k => { panels[k].hidden = k !== name; });
+            tabsBar.hidden = name === "account";
+            tabs.forEach(t => t.classList.toggle("active", t.dataset.tab === name));
+            if (name === "account") $("#accName").textContent = current().name;
+        }
+
+        function openAuth() {
+            showPanel(current() ? "account" : "signup");
+            modal.hidden = false;
+            modal.classList.add("open");
+            document.body.classList.add("no-scroll");
+            const first = $("input", panels.signup.hidden ? panels.login : panels.signup);
+            if (first && !current()) setTimeout(() => first.focus(), 60);
+        }
+        function closeAuth() {
+            modal.classList.remove("open");
+            modal.hidden = true;
+            document.body.classList.remove("no-scroll");
+        }
+
+        loginBtn.addEventListener("click", openAuth);
+        $("#authClose").addEventListener("click", closeAuth);
+        modal.addEventListener("click", e => { if (e.target === modal) closeAuth(); });
+        document.addEventListener("keydown", e => { if (e.key === "Escape" && modal.classList.contains("open")) closeAuth(); });
+        tabs.forEach(t => t.addEventListener("click", () => {
+            showPanel(t.dataset.tab);
+            const first = $("input", panels[t.dataset.tab]);
+            if (first) first.focus();
+        }));
+
+        /* إنشاء حساب */
+        panels.signup.addEventListener("submit", async e => {
+            e.preventDefault();
+            const t = T[lang], f = panels.signup;
+            const nameEl = $("#suName"), p1 = $("#suPass"), p2 = $("#suPass2");
+            const name = nameEl.value.trim().replace(/\s+/g, " ");
+            clearInvalid(f);
+
+            if (!name || !p1.value || !p2.value) {
+                [[nameEl, name], [p1, p1.value], [p2, p2.value]].forEach(([el, v]) => { if (!v) mark(el); });
+                return toast(t.fill);
+            }
+            if (name.length < 2 || name.length > 30 || /[<>]/.test(name)) { mark(nameEl); return toast(t.badName); }
+            if (p1.value.length < 6) { mark(p1); return toast(t.pwShort); }
+            if (p1.value !== p2.value) { mark(p2); return toast(t.pwMatch); }
+            if (!(window.crypto && crypto.subtle)) return toast(t.noStore);
+
+            const users = read(USERS) || {};
+            const key = name.toLowerCase();
+            if (users[key]) { mark(nameEl); return toast(t.taken); }
+
+            try {
+                const salt = newSalt();
+                users[key] = { name, salt, hash: await hashPw(p1.value, salt) };
+                if (!write(USERS, users) || !write(SESSION, { key, name })) return toast(t.noStore);
+            } catch (err) { return toast(t.noStore); }
+
+            f.reset();
+            renderBtn();
+            closeAuth();
+            toast(t.created);
+        });
+
+        /* تسجيل الدخول */
+        panels.login.addEventListener("submit", async e => {
+            e.preventDefault();
+            const t = T[lang], f = panels.login;
+            const nameEl = $("#liName"), pEl = $("#liPass");
+            const name = nameEl.value.trim().replace(/\s+/g, " ");
+            clearInvalid(f);
+
+            if (!name || !pEl.value) {
+                if (!name) mark(nameEl);
+                if (!pEl.value) mark(pEl);
+                return toast(t.fill);
+            }
+            if (!(window.crypto && crypto.subtle)) return toast(t.noStore);
+
+            const key = name.toLowerCase();
+            const u = (read(USERS) || {})[key];
+            let ok = false;
+            try { ok = !!u && (await hashPw(pEl.value, u.salt)) === u.hash; } catch (err) {}
+            if (!ok) { mark(nameEl); mark(pEl); return toast(t.badLogin); }
+
+            write(SESSION, { key, name: u.name });
+            f.reset();
+            renderBtn();
+            closeAuth();
+            toast(t.welcome + "، " + u.name);
+        });
+
+        /* تسجيل الخروج */
+        $("#logoutBtn").addEventListener("click", () => {
+            drop(SESSION);
+            renderBtn();
+            closeAuth();
+            toast(T[lang].bye);
+        });
+
+        /* لما اللغة تتغير يرجّع اسم المستخدم/النص صح */
+        $("#langToggle").addEventListener("click", () => setTimeout(renderBtn, 220));
+        renderBtn();
     })();
 
     /* ---------- Video: يشتغل لوحده وهو ظاهر، ويقف لما يغيب ---------- */

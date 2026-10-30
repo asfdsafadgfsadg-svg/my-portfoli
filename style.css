@@ -216,11 +216,10 @@ html[dir="rtl"] .frame-ring { transform: translate(-22px, 22px); }
     break-inside: avoid; margin-bottom: 22px;
     background: var(--bg-2);
     border-radius: 6px; overflow: hidden;
-    cursor: zoom-in;
+    cursor: default;
     position: relative;
 }
-.work-item img { width: 100%; height: auto; transition: transform .6s var(--ease), filter .4s; }
-.work-item:hover img { transform: scale(1.03); }
+.work-item img { width: 100%; height: auto; -webkit-user-drag: none; user-select: none; -webkit-user-select: none; }
 .work-item::after {
     content: ""; position: absolute; inset: 0;
     border: 1px solid transparent; border-radius: 6px;
@@ -752,4 +751,69 @@ html[dir="ltr"] .hero-bg::after {
         -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 8%, #000 92%, transparent 100%);
         mask-image: linear-gradient(90deg, transparent 0, #000 8%, #000 92%, transparent 100%);
     }
+}
+
+
+/* ============ Login button + Auth modal ============ */
+.login-btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-family: var(--f-head); font-size: 13px; font-weight: 800;
+    padding: 8px 16px; border-radius: 99px;
+    border: 1px solid rgba(255,255,255,.4); background: rgba(255,255,255,.05);
+    transition: border-color .2s, background .2s;
+}
+.login-btn:hover { border-color: #fff; background: rgba(255,255,255,.12); }
+.login-btn.logged { border-color: #6ff0dc; background: rgba(111,240,220,.12); }
+.login-btn span { max-width: 120px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+.auth-modal {
+    position: fixed; inset: 0; z-index: 400; display: none;
+    align-items: center; justify-content: center; padding: 18px;
+    background: rgba(0,10,10,.72);
+    -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px);
+}
+.auth-modal.open { display: flex; animation: fade .2s ease; }
+.auth-card {
+    position: relative; width: 100%; max-width: 520px; max-height: 92vh; overflow-y: auto;
+    border-radius: 24px; border: 1px solid rgba(255,255,255,.28);
+    background: linear-gradient(135deg, rgba(10,70,68,.96) 0%, rgba(2,26,25,.98) 100%);
+    box-shadow: 0 30px 80px rgba(0,0,0,.55), inset 0 1px 0 rgba(255,255,255,.3);
+}
+.auth-close {
+    position: absolute; top: 10px; inset-inline-end: 12px; z-index: 2;
+    width: 34px; height: 34px; border-radius: 50%; font-size: 15px;
+    background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.25);
+    transition: background .2s;
+}
+.auth-close:hover { background: rgba(255,255,255,.22); }
+
+.auth-tabs { display: flex; margin: 0; padding-inline-end: 52px; border-bottom: 1px solid rgba(255,255,255,.2); background: rgba(0,0,0,.18); }
+.auth-tab {
+    flex: 1; padding: 18px 10px; font-family: var(--f-head); font-weight: 800; font-size: 15px;
+    color: #b9dcd8; border-bottom: 3px solid transparent; margin-bottom: -1px;
+    transition: color .2s, border-color .2s, background .2s;
+}
+.auth-tab:hover { color: #fff; background: rgba(255,255,255,.05); }
+.auth-tab.active { color: #fff; border-bottom-color: #6ff0dc; background: rgba(111,240,220,.08); }
+
+.auth-form[hidden], .auth-account[hidden] { display: none; }
+.auth-form .contact-table { width: 100%; border-collapse: collapse; }
+.auth-form .contact-table tr:last-child td { border-bottom: 0; }
+.auth-form .contact-table th { width: 38%; text-align: start; }
+
+.auth-account { padding: 38px 24px 34px; text-align: center; }
+.auth-hello { font-size: 20px; margin-bottom: 22px; color: #e6fbf8; }
+.auth-hello strong { color: #6ff0dc; word-break: break-word; }
+.auth-account .btn-solid {
+    background: linear-gradient(135deg, #35e0c8 0%, #0e9e97 100%);
+    border-color: rgba(255,255,255,.55); color: #012826; box-shadow: 0 8px 26px rgba(30,220,200,.35);
+}
+
+@media (max-width: 640px) {
+    .login-btn { padding: 8px 12px; }
+    .login-btn span { max-width: 76px; }
+    .auth-form .contact-table th { width: auto; display: block; }
+    .auth-form .contact-table td { display: block; }
+    .auth-form .contact-table tr.field { display: block; }
+    .auth-form .contact-table .submit-row { display: block; }
 }
