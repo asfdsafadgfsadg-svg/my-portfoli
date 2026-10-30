@@ -226,6 +226,17 @@ const SLIDE_MS = 5000;
         start();
     })();
 
+    /* ---------- Video: يشتغل لوحده وهو ظاهر، ويقف لما يغيب ---------- */
+    const siteVideo = $("#siteVideo");
+    if (siteVideo) {
+        siteVideo.muted = true;
+        const play = () => { const r = siteVideo.play(); if (r && r.catch) r.catch(() => {}); };
+        if ("IntersectionObserver" in window) {
+            new IntersectionObserver(es => es.forEach(e => e.isIntersecting ? play() : siteVideo.pause()), { threshold: 0.15 }).observe(siteVideo);
+        } else { play(); }
+        document.addEventListener("visibilitychange", () => { if (document.hidden) siteVideo.pause(); });
+    }
+
     /* ---------- Misc ---------- */
     $("#year").textContent = new Date().getFullYear();
 })();

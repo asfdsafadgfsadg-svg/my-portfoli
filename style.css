@@ -310,8 +310,8 @@ html[dir="rtl"] .frame-ring { transform: translate(-22px, 22px); }
 .contact-table .btn { cursor: pointer; min-width: 240px; }
 
 /* ============ Glass cards: teal fluted-glass background behind sections (all except hero) ============ */
-#work, #teachers, #join, #about, #contact { position: relative; isolation: isolate; }
-#work::before, #teachers::before, #join::before, #about::before, #contact::before {
+#work, #video, #teachers, #join, #about, #contact { position: relative; isolation: isolate; }
+#work::before, #video::before, #teachers::before, #join::before, #about::before, #contact::before {
     content: ""; position: absolute; top: 0; bottom: 0; left: 50%; width: 100vw;
     transform: translateX(-50%); z-index: -1; pointer-events: none;
     --stripe: 40px;
@@ -329,8 +329,8 @@ html[dir="rtl"] .frame-ring { transform: translate(-22px, 22px); }
         radial-gradient(40% 35% at 100% 0%, rgba(0,0,0,.85) 0%, rgba(0,0,0,0) 80%),
         linear-gradient(90deg, #031413 0%, #0a5553 32%, #0c7774 68%, #04201f 100%);
 }
-#work, #teachers, #join, #about, #contact { border-top: 0; }
-#work::after, #teachers::after, #join::after, #about::after, #contact::after {
+#work, #video, #teachers, #join, #about, #contact { border-top: 0; }
+#work::after, #video::after, #teachers::after, #join::after, #about::after, #contact::after {
     content: ""; position: absolute; top: 0; left: 50%; width: 100vw; height: 3px;
     transform: translateX(-50%); pointer-events: none;
     background: #fff; box-shadow: 0 0 14px rgba(255,255,255,.45);
@@ -475,7 +475,7 @@ html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
     .section-head { margin-bottom: 26px; }
     .section-head h2 { font-size: 32px; }
 
-    #work::after, #teachers::after, #join::after, #about::after, #contact::after { height: 2px; }
+    #work::after, #video::after, #teachers::after, #join::after, #about::after, #contact::after { height: 2px; }
 
     .hero-inner { padding-bottom: 40px; row-gap: 32px; }
     .hero-title { font-size: 30px; }
@@ -516,7 +516,7 @@ html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
 }
 
 @media (max-width: 640px) {
-    #work::before, #teachers::before, #join::before, #about::before, #contact::before { --stripe: 26px; }
+    #work::before, #video::before, #teachers::before, #join::before, #about::before, #contact::before { --stripe: 26px; }
 }
 
 
@@ -721,4 +721,35 @@ html[dir="ltr"] .hero-bg::after {
 @media (max-width: 380px) {
     .team-table tr { grid-template-columns: 74px 1fr; }
     .team-photo img { width: 62px; height: 62px; }
+}
+
+/* ============ Video strip: full width, right under the hero ============ */
+#video.video-strip {
+    max-width: none; margin: 0; padding: 0;
+    border-top: 0; line-height: 0; overflow: hidden;
+}
+/* الفيديو بياخد مقاس نسبته بالظبط (من غير حواف سودا)، وحدوده بتدوب في خلفية الحارة */
+#video.video-strip video {
+    display: block; margin: 0 auto; pointer-events: none;
+    width: min(100%, calc((100vh - var(--nav-h)) * 1.7917));
+    aspect-ratio: 2752 / 1536; height: auto; object-fit: fill;
+    background: transparent;
+    /* نفس درجة التركواز بتاع الحارة */
+    filter: hue-rotate(14deg) saturate(.95) brightness(1.12);
+    /* تلاشي ناعم من كل الحواف */
+    -webkit-mask-image:
+        linear-gradient(90deg, transparent 0, #000 14%, #000 86%, transparent 100%),
+        linear-gradient(180deg, transparent 0, #000 7%, #000 93%, transparent 100%);
+    -webkit-mask-composite: source-in;
+    mask-image:
+        linear-gradient(90deg, transparent 0, #000 14%, #000 86%, transparent 100%),
+        linear-gradient(180deg, transparent 0, #000 7%, #000 93%, transparent 100%);
+    mask-composite: intersect;
+}
+@media (max-width: 640px) {
+    #video.video-strip video {
+        width: 100%;
+        -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 8%, #000 92%, transparent 100%);
+        mask-image: linear-gradient(90deg, transparent 0, #000 8%, #000 92%, transparent 100%);
+    }
 }
